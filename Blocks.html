@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+    div {
+        clear: both;
+    }
+
+    span {
+        background-color: rgba(0, 0, 0, .3);
+        text-align: center;
+        border: 1px solid;
+        box-sizing: border-box;
+        width: 33%;
+        float: left;
+        height: 150px;
+        line-height: 150px;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="counter">0</span>
+        <span class="counter">0</span>
+        <span class="counter">0</span>
+    </div>
+    <div>
+        <span class="colors"></span>
+        <span class="colors"></span>
+        <span class="colors"></span>
+    </div>
+    <script>
+    var counters = document.getElementsByClassName('counter');
+    var colors = document.getElementsByClassName('colors');
+    var colorsArr = ['red', 'black', 'green'];
+
+    // function colorRandomizer() {
+    //     return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    // }
+
+    // function
+
+    function listenerAdder() {
+        if (this.classList.contains('counter')) {
+            var thisNumber = +this.innerHTML;
+            thisNumber++;
+            this.innerHTML = thisNumber;
+        } else {
+            var thisColor = this.style.backgroundColor;
+            switch (thisColor) {
+                case '':
+                    this.style.backgroundColor = colorsArr[0];
+                    break;
+                case colorsArr[0]:
+                    this.style.backgroundColor = colorsArr[1];
+                    break;
+                case colorsArr[1]:
+                    this.style.backgroundColor = colorsArr[2];
+                    break;
+                case colorsArr[2]:
+                    this.style.backgroundColor = colorsArr[0];
+                    break;
+            }
+
+        }
+    }
+
+    for (var i = 0; i < counters.length; i++) {
+        counters[i].addEventListener('click', listenerAdder);
+    }
+
+    for (var i = 0; i < colors.length; i++) {
+        colors[i].addEventListener('click', listenerAdder)
+    }
+    </script>
+</body>
+
+</html>
